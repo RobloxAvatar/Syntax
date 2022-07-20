@@ -2157,6 +2157,6 @@ do
         end)
 	end
 
-	Tab:Show()
+	MainTab:Show()
 	library:FormatWindows()
 end
