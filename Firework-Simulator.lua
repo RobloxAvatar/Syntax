@@ -2027,11 +2027,14 @@ do
 	})
 	local MainTab = Window:AddTab("Main")
     local ItemsTab = Window:AddTab("Items")
+    local MiscTab = Window:AddTab("Misc")
 	
     do
 		MainTab:AddLabel("this is the most stable version!")
 
         ItemsTab:AddLabel("this is the most stable version!")
+
+        MiscTab:AddLabel("this is the most stable version!")
 
         local switch = MainTab:AddSwitch("Infinite Money", function(bool)
 	        _G.InfMoney = bool
@@ -2060,6 +2063,28 @@ do
 
         local switch3 = ItemsTab:AddSwitch("Auto Buy", function(bool)
 	        _G.AutoBuy = bool
+        end)
+
+        function getButton()
+            for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.StrangeMan.LocalScript.ShopGui.Frame:GetChildren()) do
+                if v:IsA("TextButton") then
+                    if v:FindFirstChild("LocalScript") then
+                        return v
+                    end
+                end
+            end
+        end
+
+        local switch5 = MiscTab:AddSwitch("Strange Man Shop", function(bool)
+	        getButton().Parent.Parent.Enabled = bool
+        end)
+
+        local switch6 = MiscTab:AddSwitch("Monkey Shop", function(bool)
+	        game:GetService("Players").LocalPlayer.PlayerGui.ShopMonkey.Enabled = bool
+        end)
+
+        MiscTab:AddButton("Rejoin", function()
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
         end)
 
         dropdown:Add("DumBum 2G")
